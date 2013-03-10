@@ -1,0 +1,45 @@
+domain A 1 2 3
+domain B 1 2 3
+domain C 1 2 3 
+domain D 1 2 3 
+domain P1 X O
+domain P2 X O
+notequal(1,2)
+notequal(1,3)
+notequal(2,1)
+notequal(2,3)
+notequal(3,1)
+notequal(3,2)
+notequal(X,O)
+notequal(O,X)
+p(X,1,1)
+p(X,3,1)
+p(O,1,2)
+p(X,2,2)
+p(O,1,3)
+e(2,1)
+e(2,3)
+p(O,3,1)
+e(3,2)
+forall A B C D P1 : p(P1,A,B) ^ p(P1,A,C) ^ notequal(B,C) ^ notequal(C,B) ^ e(A,D) > canwin(P1,A,D)
+forall A B C D P1 : p(P1,B,A) ^ p(P1,C,A) ^ notequal(B,C) ^ notequal(C,B) ^ e(D,A) > canwin(P1,D,A)
+forall A B P1 P2 : canwin(P1,A,B) > play(P2,A,B)
+forall P1 A B : p(P1,A,B) > inrow(P1,A)
+forall P1 A B : p(P1,A,B) > incol(P1,B)
+forall A P1 : p(P1,A,A) > diagup(P1,A)
+forall A P1 : p(P1,1,3) > diagdown(P1,1)
+forall A P1 : p(P1,2,2) > diagdown(P1,2)
+forall A P1 : p(P1,3,1) > diagdown(P1,3)
+forall P1 A B : canwin(P1,A,B) > canwin(P1)
+forall P1 P2 A B C : p(P1,A,A) ^ p(P1,B,B) ^ e(C,C) ^ notequal(A,C) ^ notequal(A,B) ^ notequal(B,A) ^ notequal(B,C) ^ notequal(C,A) ^ notequal(C,B) > canwin(P1,C,C)
+forall P1 : p(P1,1,3) ^ p(P1,2,2) ^ e(3,1) > canwin(P1,3,1)
+forall P1 : p(P1,2,2) ^ p(P1,3,1) ^ e(1,3) > canwin(P1,1,3)
+forall P1 : p(P1,1,3) ^ P(P1,3,1) ^ e(2,2) > canwin(P1,2,2)
+forall P1 : canwin(P1) > somebodycanwin
+forall P1 : -somebodycanwin > nobodycanwin
+forall P1 A B C D : p(P1,A,B) ^ e(A,C) ^ e(A,D) ^ notequal(C,D) ^ notequal(D,C) > oneinarow(P1,A)
+forall P1 A B D : p(P1,A,B) ^ oneinarow(P1,A) ^ notequal(B,D) ^ notequal(D,B) ^ nobodycanwin > play(P1,A,D)
+forall P1 A B C D : p(P1,B,A) ^ e(C,A) ^ e(D,A) ^ notequal(C,D) ^ notequal(D,C) > oneinacol(P1,A)
+forall P1 A B D : p(P1,B,A) ^ oneinacol(P1,A) ^ notequal(B,D) ^ notequal(D,B) ^ nobodycanwin > play(P1,D,A)
+
+
